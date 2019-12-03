@@ -23,7 +23,7 @@ expired_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzMyNTc1NDB9
 
 valid_ifsc="ABNA0000001"
 invalid_ifsc="ABNAXXXXXX"
-url1="https://bank02.herokuapp.com/banks/$valid_ifsc/"
+url1="https://bank02.herokuapp.com/bank/$valid_ifsc/"
 
 echo '\n\t ----- API1 ----- \n'
 echo '\n*********** 1. Valid ifsc with jwt token: *********** '
@@ -34,14 +34,14 @@ echo '\n---------------------------------\n'
 
 
 echo '\n*********** 2. Invalid ifsc with jwt token: *********** '
-url1="https://bank02.herokuapp.com/banks/$invalid_ifsc/"
+url1="https://bank02.herokuapp.com/bank/$invalid_ifsc/"
 echo "curl URL --> $url1"
 echo "Result:"
 curl --header "Authorization: $valid_jwt_token" --request GET "$url1"
 echo '\n---------------------------------\n'
 
 echo '\n*********** 3. Valid ifsc without jwt token: *********** '
-url1="https://bank02.herokuapp.com/banks/$valid_ifsc/"
+url1="https://bank02.herokuapp.com/bank/$valid_ifsc/"
 echo "curl URL --> $url1"
 echo "Result:"
 curl --request GET "$url1"
@@ -49,7 +49,7 @@ echo '\n---------------------------------\n'
 
 
 echo '\n*********** 4. Valid ifsc with expired jwt token: *********** '
-url1="https://bank02.herokuapp.com/banks/$valid_ifsc/"
+url1="https://bank02.herokuapp.com/bank/$valid_ifsc/"
 echo "curl URL --> $url1"
 echo "Result:"
 curl --header "Authorization: $expired_jwt_token" --request GET "$url1"

@@ -18,10 +18,9 @@ from django.urls import include, path
 
 import polls.views
 
-urlpatterns = [
-    path('polls/', include('polls.urls')),
+urlpatterns = [    
     path('admin/', admin.site.urls),
 
-    path("banks/<ifsc>/", polls.views.banks, name="banks"),
+    path("bank/<ifsc>/", polls.views.banks, name="bank"),
     path("branches/", polls.views.branches, name="branches"),
 ]
