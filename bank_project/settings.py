@@ -25,7 +25,7 @@ SECRET_KEY = '3r59bi)5d0_r5bp6si@qu7h7d01$=@6ikjj9wwl3sr%p!=@3nq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bank02.herokuapp.com']
 
 
 # Application definition
