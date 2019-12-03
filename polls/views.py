@@ -40,6 +40,13 @@ def validate_jwt(f):
     return wrapper
 
 
+
+
+def start(request):
+    return render(request, "index.html", {})	
+
+
+
 @validate_jwt
 def bank(request, ifsc=None):
 
