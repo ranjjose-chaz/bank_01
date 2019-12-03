@@ -7,6 +7,8 @@ from django.forms.models import model_to_dict
 from polls.models import Banks
 from polls.models import BankBranches
 
+import std_error_responses
+
 import requests
 import os
 import json
@@ -17,28 +19,29 @@ def validate_jwt(f):
         token_header = args[0].META.get('HTTP_AUTHORIZATION')
 
         if not token_header:
-            return JsonResponse({"message": "JWT token missing"}, status=401)
+            return JsonResponse(std_error_responses.TOKEN_MISSING, status=401)
 
         try:
             jwt.decode(token_header, 'secret', algorithms=['HS256'])
         except jwt.exceptions.ExpiredSignatureError:
-            return JsonResponse({"message": "JWT token expired"}, status=401)    
+            return JsonResponse(std_error_responses.TOKEN_EXPIRED, status=401)    
         except Exception as e:
             print(e)
-            return JsonResponse({"message": "JWT token invalid"}, status=401)             
+            return JsonResponse(std_error_responses.TOKEN_INVALID, status=401)
+
         return f(*args, **kw)      
     return wrapper
 
 
 @validate_jwt
 def banks(request, ifsc=None):
-	
+
     if ifsc:
 
         try:
             bank = BankBranches.objects.get(ifsc=ifsc)
         except BankBranches.DoesNotExist:
-            return JsonResponse({"message": "The item does not exist"}, status=404)            
+            return JsonResponse({"error": {{"message": "No item matched"}}}, status=404)            
         return JsonResponse({"bank_id": bank.bank_id, "bank_name": bank.bank_name})
         
     return JsonResponse()    
@@ -55,7 +58,7 @@ def branches(request):
         offset = int(offset)        
         branch_list = BankBranches.objects.filter(city=city, bank_name=bank_name).order_by('ifsc')[offset:(offset+limit)]
         if not branch_list:
-            return JsonResponse({"message": "The item does not exist"}, status=404)    
+            return JsonResponse({"error": {{"message": "The item does not exist"}}}, status=404)    
         return JsonResponse([model_to_dict(branch) for branch in branch_list], safe=False)
-    return JsonResponse({"message": "The request can't be processed"}, status=422)    
+    return JsonResponse({"error": {{"message": "The request can't be processed"}}}, status=422)    
       
