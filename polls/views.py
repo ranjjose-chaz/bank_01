@@ -28,7 +28,7 @@ def validate_jwt(f):
         return f(*args, **kw)      
     return wrapper
 
-#@validate_jwt
+@validate_jwt
 def bank(request, id=None):
     if id:
 
@@ -41,7 +41,7 @@ def bank(request, id=None):
     return JsonResponse() 
 
 
-#@validate_jwt
+@validate_jwt
 def banks(request, ifsc=None):
     if ifsc:
 
