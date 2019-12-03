@@ -9,8 +9,8 @@ offset=0	#invalid if < 0
 limit=10 #invalid if <= 0
 
 
-valid_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzU0NzI1Nzd9.IzWdCyHrdSLfYzzu1zaW7QRtex_lTeQ2QW6_EnyvA64"
-expired_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjEzNzE3MjA5Mzl9.buSCX2yUjPtzLPbSsWGXptGuuvqLq_TdANGoUx7yQ5o"
+valid_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzU4NDk1NDB9.XL3NPGU-e9hgjU8F4YNzZDnisMM2yNpqxDHoIvUUcnI"
+expired_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzMyNTc1NDB9.jO_EsoFbz852RjbUy8fz95vnrMa0ICCdrZMHCN5iO5U"
 
 
 
@@ -118,15 +118,3 @@ echo "curl URL --> $url2"
 echo "Result:"
 curl --header "Authorization: $valid_jwt_token" --request GET "$url2"
 echo '\n---------------------------------\n'
-
-#echo '\n2. Valid city and bank name to get branches:'
-#echo "curl URL --> $url2"
-#curl --header "Authorization: $jwt_token" --request GET "$url2"
-
-
-
-
-
-#url2="https://bank02.herokuapp.com/branches/?city=MUMBAI&bank_name=THE%20ROYAL%20BANK%20OF%20SCOTLAND%20N%20V&offset=0&limit=10"
-
-

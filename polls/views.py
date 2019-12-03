@@ -12,10 +12,6 @@ import os
 import json
 import jwt
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
-
 def validate_jwt(f):    
     def wrapper(*args, **kw):        
         token_header = args[0].META.get('HTTP_AUTHORIZATION')
@@ -25,23 +21,13 @@ def validate_jwt(f):
 
         try:
             jwt.decode(token_header, 'secret', algorithms=['HS256'])
+        except jwt.exceptions.ExpiredSignatureError:
+            return JsonResponse({"message": "JWT token expired"}, status=401)    
         except Exception as e:
             print(e)
             return JsonResponse({"message": "JWT token invalid"}, status=401)             
         return f(*args, **kw)      
     return wrapper
-
-@validate_jwt
-def bank(request, id=None):
-    if id:
-
-        try:
-            bank = Banks.objects.get(id=id)
-        except Banks.DoesNotExist:
-            return JsonResponse({"message": "The item does not exist"}, status=404)            
-        return JsonResponse(model_to_dict(bank))
-        
-    return JsonResponse() 
 
 
 @validate_jwt
