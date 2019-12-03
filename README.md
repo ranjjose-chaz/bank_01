@@ -1,4 +1,4 @@
-# bank_01
+# Bank Search App
 ### Backend Coding Exercise
 
 - Hosted in heroku, [**here**](https://bank02.herokuapp.com)
