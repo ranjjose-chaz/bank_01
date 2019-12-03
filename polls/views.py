@@ -20,6 +20,9 @@ def validate_jwt(f):
     def wrapper(*args, **kw):        
         token_header = args[0].META.get('HTTP_AUTHORIZATION')
 
+        if not token_header:
+            return JsonResponse({"message": "JWT token missing"}, status=401)
+
         try:
             jwt.decode(token_header, 'secret', algorithms=['HS256'])
         except Exception as e:
@@ -49,7 +52,7 @@ def banks(request, ifsc=None):
             bank = BankBranches.objects.get(ifsc=ifsc)
         except BankBranches.DoesNotExist:
             return JsonResponse({"message": "The item does not exist"}, status=404)            
-        return JsonResponse(model_to_dict(bank))
+        return JsonResponse({"bank_id": bank.bank_id, "bank_name": bank.bank_name})
         
     return JsonResponse()    
 
