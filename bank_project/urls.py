@@ -22,8 +22,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
 
-
-    path("bank/<id>/", polls.views.bank, name="bank"),
     path("banks/<ifsc>/", polls.views.banks, name="banks"),
     path("branches/", polls.views.branches, name="branches"),
 ]
