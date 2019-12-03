@@ -28,6 +28,18 @@ def validate_jwt(f):
         return f(*args, **kw)      
     return wrapper
 
+#@validate_jwt
+def bank(request, ifsc=None):
+    if ifsc:
+
+        try:
+            bank = Banks.objects.get(ifsc=ifsc)
+        except Banks.DoesNotExist:
+            return JsonResponse({"message": "The item does not exist"}, status=404)            
+        return JsonResponse(model_to_dict(bank))
+        
+    return JsonResponse() 
+
 
 #@validate_jwt
 def banks(request, ifsc=None):
