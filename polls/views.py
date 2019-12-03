@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.forms.models import model_to_dict
 
-from .models import Greeting
 from .models import Banks
 from .models import BankBranches
 
