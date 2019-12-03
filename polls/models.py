@@ -1,11 +1,5 @@
 from django.db import models
 
-from django.db import models
-
-
-class Greeting(models.Model):
-    when = models.DateTimeField("date created", auto_now_add=True)
-
 class Banks(models.Model):
     id = models.BigIntegerField(primary_key=True)	
     name = models.CharField(max_length=49)
