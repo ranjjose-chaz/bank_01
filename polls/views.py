@@ -29,7 +29,7 @@ def validate_jwt(f):
     return wrapper
 
 
-@validate_jwt
+#@validate_jwt
 def banks(request, ifsc=None):
     if ifsc:
 
