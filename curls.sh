@@ -68,7 +68,7 @@ echo '\n---------------------------------\n'
 #4. limit
 # Addtionally, offset >= 0, limit > 0
 
-echo '\n\t ----- API2 ----- \n'
+echo '\n\n\t ----- API2 ----- \n'
 echo '\n*********** 1. Valid query params with valid jwt token: *********** '
 url2="https://bank02.herokuapp.com/branches/?city=$valid_city&bank_name=$bank_name1&offset=$offset&limit=$limit"
 echo "curl URL --> $url2"
