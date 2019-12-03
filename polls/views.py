@@ -4,8 +4,8 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.forms.models import model_to_dict
 
-from .models import Banks
-from .models import BankBranches
+from polls.models import Banks
+from polls.models import BankBranches
 
 import requests
 import os
