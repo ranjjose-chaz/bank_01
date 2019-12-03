@@ -30,7 +30,7 @@ def validate_jwt(f):
 
 #@validate_jwt
 def bank(request, id=None):
-    if ifsc:
+    if id:
 
         try:
             bank = Banks.objects.get(id=id)
