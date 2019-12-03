@@ -19,6 +19,7 @@ from django.urls import include, path
 import polls.views
 
 urlpatterns = [   
+	path('', polls.views.start, name="start"),
     path('admin/', admin.site.urls),
 
     path("bank/<ifsc>/", polls.views.bank, name="bank"),
