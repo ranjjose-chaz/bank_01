@@ -9,7 +9,10 @@ offset=0	#invalid if < 0
 limit=10 #invalid if <= 0
 
 
+#expiry kept at datetime.datetime(2019, 12, 8, 23, 59) ~ approx 5 days 
 valid_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzU4NDk1NDB9.XL3NPGU-e9hgjU8F4YNzZDnisMM2yNpqxDHoIvUUcnI"
+
+#expired datetime - kept at datetime.datetime(2019, 11, 8, 23,59,0)
 expired_jwt_token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzMyNTc1NDB9.jO_EsoFbz852RjbUy8fz95vnrMa0ICCdrZMHCN5iO5U"
 
 
@@ -29,11 +32,6 @@ echo "Result:"
 curl --header "Authorization: $valid_jwt_token" --request GET "$url1"
 echo '\n---------------------------------\n'
 
-echo '\n*********** 1. Valid ifsc with jwt token: *********** '
-echo "curl URL --> $url1"
-echo "Result:"
-curl --header "Authorization: $valid_jwt_token" --request GET "$url1"
-echo '\n---------------------------------\n'
 
 echo '\n*********** 2. Invalid ifsc with jwt token: *********** '
 url1="https://bank02.herokuapp.com/banks/$invalid_ifsc/"
