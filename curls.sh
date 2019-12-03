@@ -85,8 +85,16 @@ curl --header "Authorization: $valid_jwt_token" --request GET "$url2"
 echo '\n---------------------------------\n'
 
 
+echo '\n*********** 3. Valid query params with valid jwt token: *********** '
+url2="https://bank02.herokuapp.com/branches/?city=$valid_city&bank_name=$bank_name2&offset=100&limit=5"
+echo "curl URL --> $url2"
+echo "Result:"
+curl --header "Authorization: $valid_jwt_token" --request GET "$url2"
+echo '\n---------------------------------\n'
 
-echo '\n*********** 3. Missing query params with valid jwt token: *********** '
+
+
+echo '\n*********** 4. Missing query params with valid jwt token: *********** '
 url2="https://bank02.herokuapp.com/branches/?bank_name=$bank_name2&offset=$offset"
 echo "curl URL --> $url2"
 echo "Result:"
@@ -94,7 +102,7 @@ curl --header "Authorization: $valid_jwt_token" --request GET "$url2"
 echo '\n---------------------------------\n'
 
 
-echo '\n*********** 4. Valid query params without jwt token: *********** '
+echo '\n*********** 5. Valid query params without jwt token: *********** '
 url2="https://bank02.herokuapp.com/branches/?city=$valid_city&bank_name=$bank_name2&offset=$offset&limit=$limit"
 echo "curl URL --> $url2"
 echo "Result:"
@@ -102,7 +110,7 @@ curl --request GET "$url2"
 echo '\n---------------------------------\n'
 
 
-echo '\n*********** 5. Valid query params with expired jwt token: *********** '
+echo '\n*********** 6. Valid query params with expired jwt token: *********** '
 url2="https://bank02.herokuapp.com/branches/?city=$valid_city&bank_name=$bank_name2&offset=$offset&limit=$limit"
 echo "curl URL --> $url2"
 echo "Result:"
@@ -110,7 +118,7 @@ curl --header "Authorization: $expired_jwt_token" --request GET "$url2"
 echo '\n---------------------------------\n'
 
 
-echo '\n*********** 6. Invalid query params with valid jwt token: *********** '
+echo '\n*********** 7. Invalid query params with valid jwt token: *********** '
 url2="https://bank02.herokuapp.com/branches/?city=$thor_city&bank_name=$bank_name1&offset=$offset&limit=$limit"
 echo "curl URL --> $url2"
 echo "Result:"
