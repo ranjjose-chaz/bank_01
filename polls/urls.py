@@ -1,7 +1,17 @@
-from django.urls import path
+from django.urls import path, include
 
-from . import views
+from django.contrib import admin
+
+admin.autodiscover()
+
+import hello.views
+
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path("", hello.views.index, name="index"),
+    path("admin/", admin.site.urls),
+
+    path("banks/<ifsc>/", hello.views.banks, name="banks"),
+    path("branches/", hello.views.branches, name="branches"),
+
 ]
